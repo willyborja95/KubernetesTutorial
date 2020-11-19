@@ -6,7 +6,7 @@ services:
       - "3306:3306"
     volumes:
       - ./init.sql:/data/init.sql
-    command: mysqld --init-file="init.sql", --disable-partition-engine-check
+    command: mysqld --init-file="./init.sql", --disable-partition-engine-check
     environment:
     - MYSQL_ROOT_PASSWORD= "admin"
     - MYSQL_USER= "admin"
