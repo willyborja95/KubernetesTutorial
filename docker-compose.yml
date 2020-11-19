@@ -4,3 +4,4 @@ services:
     image: mysql:5.7.25
     ports:
       - "3306:3306"
+    command: --disable-partition-engine-check
