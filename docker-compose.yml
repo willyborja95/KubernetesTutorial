@@ -6,7 +6,7 @@ services:
       - "3306:3306"
     volumes:
       - ./init.sql:/data/init.sql
-    command: mysqld --init-file="./init.sql"
+    command: mysqld --init-file="init.sql"
     environment:
     - MYSQL_ROOT_PASSWORD= ""
     - MYSQL_USER= root
