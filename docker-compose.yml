@@ -4,11 +4,3 @@ services:
     image: mysql:5.7.25
     ports:
       - "3306:3306"
-    volumes:
-      - ./init.sql:/data/init.sql
-    command: mysqld --init-file="init.sql"
-    environment:
-    - MYSQL_ROOT_PASSWORD= "admin"
-    - MYSQL_USER= "admin"
-    - MYSQL_PASSWORD= "admin"
-    - MYSQL_DATABASE= "db_ms_identity_managment"
