@@ -1,10 +1,11 @@
-services: 
-  db: 
-    environment: "MYSQL_ROOT_PASSWORD= \"admin\" MYSQL_USER= \"admin\" MYSQL_PASSWORD= \"admin\" MYSQL_DATABASE= \"db_ms_identity_managment\""
-    image: "mysql:5.7.25"
-    ports: 
+version: '3' 
+services:
+  db:
+    image: mysql:5.7.25
+    ports:
       - "3306:3306"
-    volumes: 
-      - ".config/init.sql:/config/init.sql"
-version: "3"
-
+    environment:
+    - MYSQL_ROOT_PASSWORD= "admin"
+    - MYSQL_USER= "admin"
+    - MYSQL_PASSWORD= "admin"
+    - MYSQL_DATABASE= "db_ms_identity_managment"
