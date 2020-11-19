@@ -1,14 +1,13 @@
-version: '3'
-services:
+version: '3' services:
   db:
     image: mysql
     ports:
       - "3306:3306"
     volumes:
       - ./init.sql:/data/init.sql
-    command: mysqld --init-file="./init.sql"
+    command: mysqld --init-file="init.sql"
     environment:
     - MYSQL_ROOT_PASSWORD= "admin"
     - MYSQL_USER= "admin"
     - MYSQL_PASSWORD= "admin"
-    - MYSQL_DATABASE= db_ms_identity_managment
+    - MYSQL_DATABASE= "db_ms_identity_managment"
