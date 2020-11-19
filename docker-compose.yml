@@ -5,7 +5,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./init.sql:/data/init.sql
+      - ./init.sql:/init.sql
     command: mysqld --init-file="./init.sql", --disable-partition-engine-check
     environment:
     - MYSQL_ROOT_PASSWORD= "admin"
