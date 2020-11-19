@@ -4,9 +4,9 @@ services:
     image: mysql:5.7.25
     ports:
       - "3306:3306"
-    command: --init-file config/init.sql
+    command: --init-file /config/init.sql
     volumes:
-      - config/init.sql:/config/init.sql
+      - /config/init.sql:/config/init.sql
     environment:
     - MYSQL_ROOT_PASSWORD= "admin"
     - MYSQL_USER= "admin"
