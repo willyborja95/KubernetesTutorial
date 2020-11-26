@@ -1,47 +1,47 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-mysql
+  name: mysqlService
   labels:
-    app: wordpress
+    app: backendApp
 spec:
   ports:
     - port: 3306
   selector:
-    app: wordpress
+    app: backendApp
     tier: mysql
   clusterIP: None
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: mysqlPvClaim
   labels:
-    app: wordpress
+    app: backendApp
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 10Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-mysql
+  name: mysqlDeployment
   labels:
-    app: wordpress
+    app: backendApp
 spec:
   selector:
     matchLabels:
-      app: wordpress
+      app: backendApp
       tier: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: wordpress
+        app: backendApp
         tier: mysql
     spec:
       containers:
@@ -57,9 +57,9 @@ spec:
         - containerPort: 3306
           name: mysql
         volumeMounts:
-        - name: mysql-persistent-storage
+        - name: mysqlPersistentStorage
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-persistent-storage
+      - name: mysqlPersistentStorage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: mysqlPvClaim
