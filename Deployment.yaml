@@ -1,23 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysqlService
+  name: mysql-service
   labels:
-    app: backendApp
+    app: backend-app
 spec:
   ports:
     - port: 3306
   selector:
-    app: backendApp
+    app: backend-app
     tier: mysql
   clusterIP: None
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: Persistent-volume-claim
 metadata:
-  name: mysqlPvClaim
+  name: mysql-pv-claim
   labels:
-    app: backendApp
+    app: backend-app
 spec:
   accessModes:
     - ReadWriteOnce
@@ -28,20 +28,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysqlDeployment
+  name: mysql-deployment
   labels:
-    app: backendApp
+    app: backend-app
 spec:
   selector:
     matchLabels:
-      app: backendApp
+      app: backend-app
       tier: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: backendApp
+        app: backend-app
         tier: mysql
     spec:
       containers:
@@ -57,9 +57,9 @@ spec:
         - containerPort: 3306
           name: mysql
         volumeMounts:
-        - name: mysqlPersistentStorage
+        - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysqlPersistentStorage
+      - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysqlPvClaim
+          claimName: mysql-pv-claim
