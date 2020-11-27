@@ -61,10 +61,11 @@ spec:
           mountPath: /var/lib/mysql
       volumes:
       - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
         configMap:
           name: mysql-initdb-config
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+        
 ---
 apiVersion: v1
 kind: ConfigMap
