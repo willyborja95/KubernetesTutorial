@@ -68,13 +68,15 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mysecrets
-              key: MYSQL_SERVICE_HOST             
+              key: MYSQL_SERVICE_HOST
+                 
         ports:
         - containerPort: 3306
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+          mountPath: "/var/lib/mysql"
+          subpath: "mysql"
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
