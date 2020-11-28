@@ -49,27 +49,26 @@ spec:
       - image: mysql:5.6
         name: mysql
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysecrets
-              key: MYSQL_ROOT_PASSWORD
-        - name: MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: mysecrets
-              key: MYSQL_USER
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysecrets
-              key: MYSQL_PASSWORD
-        - name: MYSQL_SERVICE_HOST
-          valueFrom:
-            secretKeyRef:
-              name: mysecrets
-              key: MYSQL_SERVICE_HOST
-                 
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecrets
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: mysecrets
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecrets
+                key: MYSQL_PASSWORD
+          - name: MYSQL_SERVICE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: mysecrets
+                key: MYSQL_SERVICE_HOST
         ports:
         - containerPort: 3306
           name: mysql
